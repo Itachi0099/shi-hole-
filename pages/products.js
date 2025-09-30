@@ -1,377 +1,154 @@
-/**
- * Products Page - AI Demos and Interactive Features
- */
-
 class ProductsPage {
     constructor() {
-        this.currentDemo = null;
-        this.isAnimating = false;
-        this.init();
+        this.setupCards();
+        this.setupDemos();
+        this.initGSAPAnimations();
     }
     
-    init() {
-        this.setupProductCards();
-        this.setupAIDemo();
-        this.setupInteractiveFeatures();
-        this.startBackgroundAnimations();
-    }
-    
-    setupProductCards() {
-        const cards = document.querySelectorAll('.product-card-3d');
+    initGSAPAnimations() {
+        // Animate page entry
+        const tl = gsap.timeline();
         
-        cards.forEach((card, index) => {
-            // 3D flip effect
-            card.addEventListener('mouseenter', () => this.flipCard(card, true));
-            card.addEventListener('mouseleave', () => this.flipCard(card, false));
-            
-            // Parallax mouse tracking
-            card.addEventListener('mousemove', (e) => this.trackMouse(card, e));
-            
-            // Staggered entrance animation
-            setTimeout(() => {
-                card.classList.add('animate-in');
-            }, index * 200);
+        // Page header animation
+        tl.from('.page-header h1', {
+            opacity: 0,
+            y: -50,
+            duration: 0.8,
+            ease: "back.out(1.7)"
+        });
+        
+        // Product cards with stagger
+        tl.from('.product-card-3d', {
+            opacity: 0,
+            y: 100,
+            rotationX: 45,
+            scale: 0.8,
+            duration: 1,
+            stagger: 0.2,
+            ease: "power2.out"
+        }, "-=0.5");
+        
+        // Demo sections
+        tl.from('.demo-section', {
+            opacity: 0,
+            x: -50,
+            duration: 0.8,
+            stagger: 0.1
+        }, "-=0.8");
+        
+        // Add scroll-triggered animations
+        this.setupScrollAnimations();
+    }
+    
+    setupScrollAnimations() {
+        // Feature highlights
+        gsap.from('.feature-highlight', {
+            scrollTrigger: {
+                trigger: '.features-grid',
+                start: 'top 80%'
+            },
+            opacity: 0,
+            scale: 0.8,
+            rotation: 10,
+            duration: 0.8,
+            stagger: 0.15,
+            ease: "back.out(1.7)"
+        });
+        
+        // Demo cards animation
+        gsap.from('.demo-card', {
+            scrollTrigger: {
+                trigger: '.demos-section',
+                start: 'top 85%'
+            },
+            opacity: 0,
+            y: 60,
+            duration: 0.8,
+            stagger: 0.2
         });
     }
     
-    flipCard(card, isHover) {
+    setupCards() {
+        document.querySelectorAll('.product-card-3d').forEach(card => {
+            card.addEventListener('mouseenter', () => this.animateCardFlip(card, true));
+            card.addEventListener('mouseleave', () => this.animateCardFlip(card, false));
+        });
+    }
+    
+    animateCardFlip(card, isHover) {
         const front = card.querySelector('.card-front');
         const back = card.querySelector('.card-back');
         
         if (isHover) {
-            front.style.transform = 'rotateY(-180deg)';
-            back.style.transform = 'rotateY(0deg)';
-            card.style.transform = 'translateZ(50px) scale(1.05)';
+            gsap.to(front, {
+                rotationY: -180,
+                duration: 0.6,
+                ease: "power2.inOut"
+            });
+            gsap.to(back, {
+                rotationY: 0,
+                duration: 0.6,
+                ease: "power2.inOut"
+            });
+            gsap.to(card, {
+                scale: 1.05,
+                z: 50,
+                duration: 0.4,
+                ease: "power2.out"
+            });
         } else {
-            front.style.transform = 'rotateY(0deg)';
-            back.style.transform = 'rotateY(180deg)';
-            card.style.transform = 'translateZ(0px) scale(1)';
+            gsap.to(front, {
+                rotationY: 0,
+                duration: 0.6,
+                ease: "power2.inOut"
+            });
+            gsap.to(back, {
+                rotationY: 180,
+                duration: 0.6,
+                ease: "power2.inOut"
+            });
+            gsap.to(card, {
+                scale: 1,
+                z: 0,
+                duration: 0.4,
+                ease: "power2.out"
+            });
         }
     }
     
-    trackMouse(card, e) {
-        const rect = card.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-        
-        const deltaX = (e.clientX - centerX) * 0.1;
-        const deltaY = (e.clientY - centerY) * 0.1;
-        
-        card.style.transform += ` rotateX(${-deltaY}deg) rotateY(${deltaX}deg)`;
+    setupDemos() {
+        this.initChatBot();
+        this.initCodeGen();
+        this.initImageProcessor();
+        this.initVoiceRec();
     }
     
-    setupAIDemo() {
-        this.createChatBot();
-        this.createCodeGenerator();
-        this.createImageProcessor();
-        this.createVoiceRecognition();
-    }
-    
-    createChatBot() {
-        const chatContainer = document.getElementById('ai-chat-demo');
-        if (!chatContainer) return;
-        
-        const messages = [
-            { type: 'bot', text: 'Hello! I\'m NeoTech AI. How can I help you today?' },
-            { type: 'user', text: 'Can you explain quantum computing?' },
-            { type: 'bot', text: 'Quantum computing harnesses quantum mechanics to process information exponentially faster than classical computers...' },
-            { type: 'user', text: 'That\'s amazing! What are the applications?' },
-            { type: 'bot', text: 'Great question! Quantum computing has applications in cryptography, drug discovery, financial modeling, and AI optimization...' }
-        ];
-        
-        let messageIndex = 0;
-        
-        const addMessage = () => {
-            if (messageIndex >= messages.length) return;
-            
-            const message = messages[messageIndex];
-            const messageEl = document.createElement('div');
-            messageEl.className = `chat-message ${message.type}-message`;
-            messageEl.innerHTML = `
-                <div class="message-bubble">
-                    <div class="typing-animation" style="display: ${message.type === 'bot' ? 'block' : 'none'}">
-                        <span></span><span></span><span></span>
-                    </div>
-                    <p style="display: none">${message.text}</p>
-                </div>
-            `;
-            
-            chatContainer.appendChild(messageEl);
-            
-            // Animate typing
-            setTimeout(() => {
-                const typing = messageEl.querySelector('.typing-animation');
-                const text = messageEl.querySelector('p');
-                if (typing) typing.style.display = 'none';
-                text.style.display = 'block';
-                
-                // Typewriter effect
-                this.typeWriter(text, message.text, 50);
-            }, message.type === 'bot' ? 1000 : 100);
-            
-            messageIndex++;
-            setTimeout(addMessage, 3000);
-        };
-        
-        // Start chat simulation
-        setTimeout(addMessage, 1000);
-    }
-    
-    typeWriter(element, text, speed) {
-        element.textContent = '';
-        let i = 0;
-        
-        const type = () => {
-            if (i < text.length) {
-                element.textContent += text.charAt(i);
-                i++;
-                setTimeout(type, speed);
-            }
-        };
-        
-        type();
-    }
-    
-    createCodeGenerator() {
-        const codeDemo = document.getElementById('code-generator-demo');
-        if (!codeDemo) return;
-        
-        const codeExamples = [
-            {
-                prompt: 'Create a React component for user authentication',
-                code: `import React, { useState } from 'react';
-
-const AuthForm = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    // Authentication logic here
-    const response = await fetch('/api/auth', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password })
-    });
-  };
-  
-  return (
-    <form onSubmit={handleSubmit}>
-      <input 
-        type="email" 
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="Email"
-      />
-      <input 
-        type="password" 
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        placeholder="Password"
-      />
-      <button type="submit">Login</button>
-    </form>
-  );
-};
-
-export default AuthForm;`
-            },
-            {
-                prompt: 'Generate Python ML model training script',
-                code: `import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import accuracy_score
-
-# Load and prepare data
-data = pd.read_csv('dataset.csv')
-X = data.drop('target', axis=1)
-y = data['target']
-
-# Split data
-X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=0.2, random_state=42
-)
-
-# Train model
-model = RandomForestClassifier(n_estimators=100)
-model.fit(X_train, y_train)
-
-# Evaluate
-predictions = model.predict(X_test)
-accuracy = accuracy_score(y_test, predictions)
-print(f'Model accuracy: {accuracy:.2f}')
-
-# Save model
-import joblib
-joblib.dump(model, 'trained_model.pkl')`
-            }
-        ];
-        
-        let currentExample = 0;
-        
-        const generateCode = () => {
-            const example = codeExamples[currentExample];
-            const promptEl = codeDemo.querySelector('.code-prompt');
-            const codeEl = codeDemo.querySelector('.generated-code');
-            const button = codeDemo.querySelector('.generate-btn');
-            
-            button.textContent = 'Generating...';
-            button.disabled = true;
-            
-            // Clear previous code
-            codeEl.textContent = '';
-            promptEl.textContent = example.prompt;
-            
-            // Simulate AI thinking
-            setTimeout(() => {
-                this.typeWriter(codeEl, example.code, 20);
-                button.textContent = 'Generate Another';
-                button.disabled = false;
-                
-                currentExample = (currentExample + 1) % codeExamples.length;
-            }, 2000);
-        };
-        
-        const generateBtn = codeDemo.querySelector('.generate-btn');
-        generateBtn.addEventListener('click', generateCode);
-        
-        // Auto-generate first example
-        setTimeout(generateCode, 1000);
-    }
-    
-    createImageProcessor() {
-        const imageDemo = document.getElementById('image-processor-demo');
-        if (!imageDemo) return;
-        
-        const canvas = imageDemo.querySelector('#demo-canvas');
-        if (!canvas) return;
-        
-        const ctx = canvas.getContext('2d');
-        canvas.width = 400;
-        canvas.height = 300;
-        
-        // Draw example image
-        ctx.fillStyle = '#667eea';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        
-        // Add some "AI processing" effects
-        const addFilter = (filterName) => {
-            const processingOverlay = document.createElement('div');
-            processingOverlay.className = 'processing-overlay';
-            processingOverlay.innerHTML = `
-                <div class="processing-spinner"></div>
-                <p>Applying ${filterName}...</p>
-            `;
-            
-            imageDemo.appendChild(processingOverlay);
-            
-            setTimeout(() => {
-                // Simulate filter application
-                switch (filterName) {
-                    case 'Edge Detection':
-                        ctx.filter = 'contrast(200%) brightness(150%)';
-                        break;
-                    case 'Blur':
-                        ctx.filter = 'blur(5px)';
-                        break;
-                    case 'Sharpen':
-                        ctx.filter = 'contrast(150%) brightness(110%)';
-                        break;
-                    default:
-                        ctx.filter = 'none';
-                }
-                
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-                processingOverlay.remove();
-            }, 2000);
-        };
-        
-        const filterButtons = imageDemo.querySelectorAll('.filter-btn');
-        filterButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                addFilter(btn.textContent);
-            });
-        });
-    }
-    
-    createVoiceRecognition() {
-        const voiceDemo = document.getElementById('voice-recognition-demo');
-        if (!voiceDemo) return;
-        
-        const startBtn = voiceDemo.querySelector('.start-voice-btn');
-        const transcript = voiceDemo.querySelector('.voice-transcript');
-        const waveform = voiceDemo.querySelector('.voice-waveform');
-        
-        let isListening = false;
-        
-        const simulateVoiceRecognition = () => {
-            if (isListening) {
-                stopListening();
-                return;
-            }
-            
-            isListening = true;
-            startBtn.textContent = 'Stop Listening';
-            startBtn.classList.add('listening');
-            
-            // Animate waveform
-            this.animateWaveform(waveform);
-            
-            // Simulate speech recognition
-            const phrases = [
-                'Hello, can you help me with my project?',
-                'I need to integrate AI into my application.',
-                'What are the best practices for machine learning?',
-                'How do I optimize my neural network performance?'
-            ];
-            
-            const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
-            
-            setTimeout(() => {
-                transcript.textContent = randomPhrase;
-                stopListening();
-            }, 3000);
-        };
-        
-        const stopListening = () => {
-            isListening = false;
-            startBtn.textContent = 'Start Listening';
-            startBtn.classList.remove('listening');
-            waveform.innerHTML = '';
-        };
-        
-        startBtn.addEventListener('click', simulateVoiceRecognition);
-    }
-    
-    animateWaveform(container) {
-        container.innerHTML = '';
-        
-        const createBar = () => {
-            const bar = document.createElement('div');
-            bar.className = 'waveform-bar';
-            bar.style.height = Math.random() * 50 + 10 + 'px';
-            bar.style.animationDelay = Math.random() * 0.5 + 's';
-            return bar;
-        };
-        
-        // Create animated bars
-        for (let i = 0; i < 20; i++) {
-            container.appendChild(createBar());
+    initChatBot() {
+        const container = document.getElementById('ai-chat-demo');
+        if (container) {
+            container.innerHTML = '<div class="message">AI Chat Demo Active</div>';
         }
-        
-        // Update bars periodically
-        const updateInterval = setInterval(() => {
-            if (!container.querySelector('.waveform-bar')) {
-                clearInterval(updateInterval);
-                return;
-            }
-            
-            const bars = container.querySelectorAll('.waveform-bar');
-            bars.forEach(bar => {
-                bar.style.height = Math.random() * 50 + 10 + 'px';
-            });
-        }, 150);
+    }
+    
+    initCodeGen() {
+        const container = document.getElementById('code-generator-demo');
+        if (container) {
+            container.innerHTML = '<div class="demo">Code Generator Ready</div>';
+        }
+    }
+    
+    initImageProcessor() {
+        const container = document.getElementById('image-processor-demo');
+        if (container) {
+            container.innerHTML = '<div class="demo">Image Processor Active</div>';
+        }
+    }
+    
+    initVoiceRec() {
+        const container = document.getElementById('voice-recognition-demo');
+        if (container) {
+            container.innerHTML = '<div class="demo">Voice Recognition Ready</div>';
+        }
     }
     
     setupInteractiveFeatures() {

@@ -1,28 +1,19 @@
 /**
- * NeoTech - Technology Startup Homepage
- * Interactive JavaScript with glassmorphism effects and animations
+ * NeoTech - Technology Startup Homepage with GSAP Animations
  */
 
 class NeoTechApp {
     constructor() {
         this.isInitialized = false;
         this.particles = [];
-        this.mouseX = 0;
-        this.mouseY = 0;
-        this.typewriterIndex = 0;
-        this.typewriterSpeed = 50;
-        this.isTypewriting = false;
+        this.router = null;
         
         this.init();
     }
     
-    /**
-     * Initialize the application
-     */
     init() {
         if (this.isInitialized) return;
         
-        // Wait for DOM to be fully loaded
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', () => this.setup());
         } else {
@@ -30,59 +21,262 @@ class NeoTechApp {
         }
     }
     
-    /**
-     * Setup all functionality
-     */
     setup() {
+        this.initGSAP();
         this.initializeElements();
         this.setupEventListeners();
         this.initializeParticles();
         this.initializeAnimations();
+        this.initRouter();
         this.loadTheme();
-        this.startAnimationLoop();
-        this.initializeTypewriter();
-        this.initializeStats();
         
         this.isInitialized = true;
-        console.log('🚀 NeoTech App initialized successfully!');
+        console.log('🚀 NeoTech App with GSAP initialized!');
     }
     
-    /**
-     * Get all DOM elements
-     */
+    initGSAP () {
+        // Register GSAP plugins
+        gsap.registerPlugin(ScrollTrigger, TextPlugin);
+        
+        // Set GSAP defaults
+        gsap.defaults({
+            duration: 0.8,
+            ease: "power2.out"
+        });
+        
+        // Create hero animations
+        setTimeout(() => {
+            this.createHeroAnimations();
+            this.createScrollAnimations();
+            this.createMouseFollower();
+        }, 100);
+    }
+    
+    // Enhanced Hero Animations with GSAP
+    createHeroAnimations() {
+        const tl = gsap.timeline();
+        
+        // Hero title animation with stagger
+        tl.from('.hero-title span', {
+            opacity: 0,
+            y: 100,
+            duration: 1,
+            stagger: 0.2,
+            ease: "back.out(1.7)"
+        });
+        
+        // CTA buttons with bounce
+        tl.from('.hero-actions button', {
+            opacity: 0,
+            scale: 0,
+            duration: 0.8,
+            stagger: 0.2,
+            ease: "back.out(1.7)"
+        }, "-=0.3");
+        
+        // Floating cards animation
+        tl.from('.floating-card', {
+            opacity: 0,
+            scale: 0,
+            rotation: 180,
+            duration: 1.2,
+            stagger: 0.1,
+            ease: "back.out(1.7)"
+        }, "-=0.8");
+        
+        // Stats animation
+        tl.from('.stat-item', {
+            opacity: 0,
+            y: 50,
+            duration: 0.8,
+            stagger: 0.1
+        }, "-=0.5");
+        
+        // Animate stats numbers
+        this.animateStatsNumbers();
+    }
+    
+    // Scroll-triggered animations
+    createScrollAnimations() {
+        // Feature cards animation
+        gsap.from('.feature-card', {
+            scrollTrigger: {
+                trigger: '.features-section',
+                start: 'top 80%',
+                end: 'bottom 20%',
+                toggleActions: 'play none none reverse'
+            },
+            opacity: 0,
+            y: 100,
+            rotation: 5,
+            duration: 1,
+            stagger: 0.2,
+            ease: "back.out(1.7)"
+        });
+        
+        // Team members animation
+        gsap.from('.team-member', {
+            scrollTrigger: {
+                trigger: '.team-section',
+                start: 'top 80%',
+                toggleActions: 'play none none reverse'
+            },
+            opacity: 0,
+            scale: 0.8,
+            y: 50,
+            duration: 0.8,
+            stagger: 0.15,
+            ease: "power2.out"
+        });
+    }
+    
+    // Mouse follower effect
+    createMouseFollower() {
+        const follower = document.createElement('div');
+        follower.className = 'mouse-follower';
+        follower.innerHTML = '<div class="follower-inner"></div>';
+        document.body.appendChild(follower);
+        
+        document.addEventListener('mousemove', (e) => {
+            gsap.to(follower, {
+                x: e.clientX,
+                y: e.clientY,
+                duration: 0.3,
+                ease: "power2.out"
+            });
+        });
+    }
+    
+    // Animate statistics numbers
+    animateStatsNumbers() {
+        this.elements.statNumbers.forEach(stat => {
+            const target = parseInt(stat.dataset.count);
+            
+            gsap.to(stat, {
+                scrollTrigger: {
+                    trigger: stat,
+                    start: 'top 90%'
+                },
+                duration: 2,
+                ease: "power2.out",
+                onUpdate: function() {
+                    const current = Math.round(target * this.progress());
+                    stat.textContent = current;
+                }
+            });
+        });
+    }
+    
+    initRouter() {
+        if (typeof Router !== 'undefined') {
+            this.router = new Router();
+            
+            // Register routes with GSAP page transitions
+            this.router.register('/', () => this.renderHomePage());
+            this.router.register('/products', () => this.renderProductsPage());
+            this.router.register('/dashboard', () => this.renderDashboardPage());
+            this.router.register('/portfolio', () => this.renderPortfolioPage());
+            this.router.register('/contact', () => this.renderContactPage());
+            
+            this.router.init();
+        }
+    }
+    
+    // Page render methods with GSAP transitions
+    renderHomePage() {
+        this.showHomePage();
+        this.animatePageIn();
+    }
+    
+    renderProductsPage() {
+        if (typeof getProductsPageHTML === 'function') {
+            const main = document.querySelector('main');
+            main.innerHTML = getProductsPageHTML();
+            new ProductsPage();
+            this.animatePageIn();
+        }
+    }
+    
+    renderDashboardPage() {
+        if (typeof getDashboardPageHTML === 'function') {
+            const main = document.querySelector('main');
+            main.innerHTML = getDashboardPageHTML();
+            new DashboardPage();
+            this.animatePageIn();
+        }
+    }
+    
+    renderPortfolioPage() {
+        if (typeof getPortfolioPageHTML === 'function') {
+            const main = document.querySelector('main');
+            main.innerHTML = getPortfolioPageHTML();
+            new PortfolioPage();
+            this.animatePageIn();
+        }
+    }
+    
+    renderContactPage() {
+        if (typeof getContactPageHTML === 'function') {
+            const main = document.querySelector('main');
+            main.innerHTML = getContactPageHTML();
+            new ContactPage();
+            this.animatePageIn();
+        }
+    }
+    
+    showHomePage() {
+        const main = document.querySelector('main');
+        const heroSection = document.getElementById('hero');
+        if (heroSection) {
+            heroSection.style.display = 'flex';
+        }
+        document.querySelectorAll('section:not(#hero)').forEach(section => {
+            section.style.display = 'block';
+        });
+    }
+    
+    animatePageIn() {
+        const tl = gsap.timeline();
+        
+        tl.from('main > *', {
+            opacity: 0,
+            y: 50,
+            duration: 0.8,
+            stagger: 0.1,
+            ease: "power2.out"
+        });
+        
+        // Animate floating elements
+        if (document.querySelectorAll('.floating-card').length > 0) {
+            tl.from('.floating-card', {
+                scale: 0,
+                rotation: 180,
+                duration: 1.2,
+                stagger: 0.2,
+                ease: "back.out(1.7)"
+            }, "-=0.5");
+        }
+    }
+    
     initializeElements() {
         this.elements = {
-            // Navigation
             navToggle: document.getElementById('nav-toggle'),
             navMenu: document.getElementById('nav-menu'),
             navLinks: document.querySelectorAll('.nav-link'),
             themeToggle: document.getElementById('theme-toggle'),
-            
-            // Canvas and particles
             particlesCanvas: document.getElementById('particles-canvas'),
-            
-            // Hero section
             heroSection: document.getElementById('hero'),
             typewriterText: document.getElementById('typewriter-text'),
             ctaPrimary: document.getElementById('get-started-btn'),
             ctaSecondary: document.getElementById('watch-demo-btn'),
             scrollArrow: document.querySelector('.scroll-arrow'),
             statNumbers: document.querySelectorAll('.stat-number'),
-            statBigNumbers: document.querySelectorAll('.stat-big'),
-            
-            // Sections for scroll animations
             sections: document.querySelectorAll('[data-scroll]'),
-            
-            // Contact form
             contactForm: document.getElementById('contact-form'),
             formInputs: document.querySelectorAll('.contact-form input, .contact-form textarea'),
-            submitBtn: document.querySelector('.submit-btn'),
-            
-            // Interactive elements
             featureCards: document.querySelectorAll('.feature-card'),
             teamMembers: document.querySelectorAll('.team-member'),
-            floatingCards: document.querySelectorAll('.floating-card'),
-            glassCards: document.querySelectorAll('.glass-card')
+            floatingCards: document.querySelectorAll('.floating-card')
         };
         
         // Setup canvas

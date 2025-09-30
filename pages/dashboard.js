@@ -1,28 +1,8 @@
-/**
- * Dashboard Page - Real-time Data Visualizations & 3D Elements
- */
-
 class DashboardPage {
     constructor() {
         this.widgets = new Map();
-        this.animations = new Map();
-        this.realTimeData = {
-            users: [],
-            performance: [],
-            traffic: [],
-            sales: []
-        };
-        this.is3DEnabled = true;
-        this.init();
-    }
-    
-    init() {
-        this.setupDashboardLayout();
-        this.initializeWidgets();
-        this.startRealTimeUpdates();
-        this.setup3DElements();
-        this.setupInteractions();
-        this.initializeParticleSystem();
+        this.initWidgets();
+        this.startUpdates();
     }
     
     setupDashboardLayout() {
