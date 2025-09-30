@@ -923,11 +923,368 @@ class NeoTechApp {
 // Initialize the app when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
     window.neoTechApp = new NeoTechApp();
+    initializeRoutes();
 });
 
 // Also initialize if DOM is already loaded
 if (document.readyState !== 'loading') {
     window.neoTechApp = new NeoTechApp();
+    initializeRoutes();
+}
+
+/**
+ * Initialize all routes for the SPA
+ */
+function initializeRoutes() {
+    if (!window.router) {
+        console.error('Router not available');
+        return;
+    }
+    
+    // Register all routes
+    router
+        .register('/', renderHomePage, {
+            title: 'NeoTech - Home',
+            description: 'Revolutionary AI-powered solutions for the next generation of technology',
+            transition: 'fade'
+        })
+        .register('/products', renderProductsPage, {
+            title: 'NeoTech - Products & AI Demos',
+            description: 'Experience our cutting-edge AI products and interactive demos',
+            transition: 'slide-left'
+        })
+        .register('/portfolio', renderPortfolioPage, {
+            title: 'NeoTech - Portfolio',
+            description: 'Explore our impressive portfolio of innovative projects',
+            transition: 'slide-up'
+        })
+        .register('/dashboard', renderDashboardPage, {
+            title: 'NeoTech - Dashboard',
+            description: 'Real-time analytics and data visualization dashboard',
+            transition: 'scale'
+        })
+        .register('/contact', renderContactPage, {
+            title: 'NeoTech - Contact Us',
+            description: 'Get in touch with our team for innovative technology solutions',
+            transition: 'slide-right'
+        });
+}
+
+/**
+ * Render the home page (existing content)
+ */
+async function renderHomePage() {
+    const main = document.querySelector('main');
+    if (!main) return;
+    
+    main.innerHTML = getHomePageHTML();
+    
+    // Re-initialize the home page functionality
+    window.neoTechApp = new NeoTechApp();
+}
+
+/**
+ * Render the products page
+ */
+async function renderProductsPage() {
+    const main = document.querySelector('main');
+    if (!main) return;
+    
+    main.innerHTML = getProductsPageHTML();
+    
+    // Initialize products page functionality
+    new ProductsPage();
+}
+
+/**
+ * Render the portfolio page
+ */
+async function renderPortfolioPage() {
+    const main = document.querySelector('main');
+    if (!main) return;
+    
+    main.innerHTML = getPortfolioPageHTML();
+    
+    // Initialize portfolio page functionality
+    new PortfolioPage();
+}
+
+/**
+ * Render the dashboard page
+ */
+async function renderDashboardPage() {
+    const main = document.querySelector('main');
+    if (!main) return;
+    
+    main.innerHTML = getDashboardPageHTML();
+    
+    // Initialize dashboard page functionality
+    new DashboardPage();
+}
+
+/**
+ * Render the contact page
+ */
+async function renderContactPage() {
+    const main = document.querySelector('main');
+    if (!main) return;
+    
+    main.innerHTML = getContactPageHTML();
+    
+    // Initialize contact page functionality
+    new ContactPage();
+}
+
+/**
+ * Get home page HTML content
+ */
+function getHomePageHTML() {
+    return `
+        <!-- Hero Section -->
+        <section id="hero" class="hero-section" data-scroll>
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        <span class="gradient-text">Shaping Tomorrow's</span>
+                        <span class="gradient-text">Technology Today</span>
+                    </h1>
+                    <p class="hero-subtitle" id="typewriter-text">
+                        We're building the next generation of AI-powered solutions that transform industries and empower businesses to reach new heights.
+                    </p>
+                    <div class="hero-actions">
+                        <button class="cta-primary" onclick="router.navigateTo('/products')">
+                            <span>Explore Products</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                        <button class="cta-secondary" onclick="router.navigateTo('/portfolio')">
+                            <i class="fas fa-play"></i>
+                            <span>View Portfolio</span>
+                        </button>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <span class="stat-number" data-count="500">0</span>
+                            <span class="stat-label">+ Clients</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" data-count="99">0</span>
+                            <span class="stat-label">% Success Rate</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" data-count="24">0</span>
+                            <span class="stat-label">/7 Support</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="floating-cards">
+                        <div class="floating-card card-1">
+                            <i class="fas fa-brain"></i>
+                            <span>AI Intelligence</span>
+                        </div>
+                        <div class="floating-card card-2">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Security First</span>
+                        </div>
+                        <div class="floating-card card-3">
+                            <i class="fas fa-lightning-bolt"></i>
+                            <span>Lightning Fast</span>
+                        </div>
+                        <div class="floating-card card-4">
+                            <i class="fas fa-globe"></i>
+                            <span>Global Scale</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <div class="scroll-arrow">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Features Section -->
+        <section id="features" class="features-section" data-scroll>
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Powerful Features</h2>
+                    <p class="section-subtitle">Cutting-edge technology solutions designed to accelerate your business growth</p>
+                </div>
+                <div class="features-grid">
+                    <article class="feature-card glass-card" data-feature="ai">
+                        <div class="feature-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3 class="feature-title">Advanced AI</h3>
+                        <p class="feature-description">
+                            Leverage machine learning and neural networks to automate complex processes and gain intelligent insights.
+                        </p>
+                        <button class="feature-link" onclick="router.navigateTo('/products')">
+                            Learn More <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </article>
+                    
+                    <article class="feature-card glass-card" data-feature="security">
+                        <div class="feature-icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <h3 class="feature-title">Enterprise Security</h3>
+                        <p class="feature-description">
+                            Bank-grade security with end-to-end encryption, compliance certifications, and advanced threat protection.
+                        </p>
+                        <button class="feature-link" onclick="router.navigateTo('/products')">
+                            Learn More <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </article>
+                    
+                    <article class="feature-card glass-card" data-feature="scalability">
+                        <div class="feature-icon">
+                            <i class="fas fa-expand-arrows-alt"></i>
+                        </div>
+                        <h3 class="feature-title">Infinite Scalability</h3>
+                        <p class="feature-description">
+                            Cloud-native architecture that scales seamlessly from startup to enterprise, handling millions of operations.
+                        </p>
+                        <button class="feature-link" onclick="router.navigateTo('/dashboard')">
+                            See Dashboard <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </article>
+                    
+                    <article class="feature-card glass-card" data-feature="analytics">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3 class="feature-title">Real-time Analytics</h3>
+                        <p class="feature-description">
+                            Comprehensive dashboards and reporting tools with real-time data processing and predictive analytics.
+                        </p>
+                        <button class="feature-link" onclick="router.navigateTo('/dashboard')">
+                            View Demo <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </article>
+                    
+                    <article class="feature-card glass-card" data-feature="integration">
+                        <div class="feature-icon">
+                            <i class="fas fa-puzzle-piece"></i>
+                        </div>
+                        <h3 class="feature-title">Seamless Integration</h3>
+                        <p class="feature-description">
+                            Connect with 500+ third-party services through our robust API ecosystem and pre-built connectors.
+                        </p>
+                        <button class="feature-link" onclick="router.navigateTo('/products')">
+                            Explore APIs <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </article>
+                    
+                    <article class="feature-card glass-card" data-feature="support">
+                        <div class="feature-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h3 class="feature-title">24/7 Support</h3>
+                        <p class="feature-description">
+                            Expert technical support available around the clock with guaranteed response times and success rates.
+                        </p>
+                        <button class="feature-link" onclick="router.navigateTo('/contact')">
+                            Get Support <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </article>
+                </div>
+            </div>
+        </section>
+        
+        <!-- About Section -->
+        <section id="about" class="about-section" data-scroll>
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-text">
+                        <div class="section-header">
+                            <h2 class="section-title">About NeoTech</h2>
+                            <p class="section-subtitle">Pioneering the future of technology since 2019</p>
+                        </div>
+                        <div class="about-description">
+                            <p>
+                                At NeoTech, we believe in the transformative power of technology. Our mission is to democratize access to cutting-edge AI and cloud solutions, enabling businesses of all sizes to innovate and scale.
+                            </p>
+                            <p>
+                                With a team of world-class engineers and visionaries, we've served over 500 companies across 40 countries, processing billions of data points and delivering measurable business outcomes.
+                            </p>
+                        </div>
+                        <div class="about-achievements">
+                            <div class="achievement-item">
+                                <i class="fas fa-trophy"></i>
+                                <div>
+                                    <h4>Industry Leader</h4>
+                                    <p>Recognized as a top innovator by TechCrunch and Forbes</p>
+                                </div>
+                            </div>
+                            <div class="achievement-item">
+                                <i class="fas fa-rocket"></i>
+                                <div>
+                                    <h4>Rapid Growth</h4>
+                                    <p>300% year-over-year growth for 3 consecutive years</p>
+                                </div>
+                            </div>
+                            <div class="achievement-item">
+                                <i class="fas fa-users"></i>
+                                <div>
+                                    <h4>Global Team</h4>
+                                    <p>150+ engineers across 15 countries and 6 continents</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-visual">
+                        <div class="glass-card about-stats-card">
+                            <h3>Our Impact</h3>
+                            <div class="stats-grid">
+                                <div class="stat-box">
+                                    <span class="stat-big" data-count="2.5">0</span>
+                                    <span class="stat-unit">B+</span>
+                                    <p>Data Points Processed</p>
+                                </div>
+                                <div class="stat-box">
+                                    <span class="stat-big" data-count="99.9">0</span>
+                                    <span class="stat-unit">%</span>
+                                    <p>Uptime Guarantee</p>
+                                </div>
+                                <div class="stat-box">
+                                    <span class="stat-big" data-count="40">0</span>
+                                    <span class="stat-unit">+</span>
+                                    <p>Countries Served</p>
+                                </div>
+                                <div class="stat-box">
+                                    <span class="stat-big" data-count="15">0</span>
+                                    <span class="stat-unit">ms</span>
+                                    <p>Average Response Time</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- CTA Section -->
+        <section id="cta" class="cta-section" data-scroll>
+            <div class="container">
+                <div class="cta-content">
+                    <h2 class="cta-title">Ready to Transform Your Business?</h2>
+                    <p class="cta-subtitle">Join thousands of companies already using our cutting-edge solutions</p>
+                    <div class="cta-buttons">
+                        <button class="cta-primary" onclick="router.navigateTo('/contact')">
+                            <span>Get Started Today</span>
+                            <i class="fas fa-rocket"></i>
+                        </button>
+                        <button class="cta-secondary" onclick="router.navigateTo('/portfolio')">
+                            <span>View Case Studies</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    `;
 }
 
 // Export for potential use in other scripts
