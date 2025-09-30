@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NeoTech - Revolutionary AI-powered solutions for the next generation of technology">
+    <meta name="keywords" content="technology, startup, AI, innovation, software, glassmorphism">
+    <meta name="author" content="NeoTech">
+    
+    <title>NeoTech - Shaping Tomorrow's Technology Today</title>
+    
+    <!-- Preconnect to external resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Theme color for mobile browsers -->
+    <meta name="theme-color" content="#667eea">
+</head>
+<body>
+    <!-- Background canvas for particle effects -->
+    <canvas id="particles-canvas" class="particles-background"></canvas>
+    
+    <!-- Navigation Header -->
+    <header class="glass-header" id="header">
+        <nav class="nav-container">
+            <div class="nav-brand">
+                <div class="logo">
+                    <i class="fas fa-rocket"></i>
+                    <span>NeoTech</span>
+                </div>
+            </div>
+            
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item">
+                    <a href="#hero" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#features" class="nav-link">Features</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#about" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#team" class="nav-link">Team</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link">Contact</a>
+                </li>
+            </ul>
+            
+            <div class="nav-actions">
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                    <span class="hamburger"></span>
+                    <span class="hamburger"></span>
+                    <span class="hamburger"></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="hero-section" data-scroll>
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        <span class="gradient-text">Shaping Tomorrow's</span>
+                        <span class="gradient-text">Technology Today</span>
+                    </h1>
+                    <p class="hero-subtitle" id="typewriter-text">
+                        We're building the next generation of AI-powered solutions that transform industries and empower businesses to reach new heights.
+                    </p>
+                    <div class="hero-actions">
+                        <button class="cta-primary" id="get-started-btn">
+                            <span>Get Started</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                        <button class="cta-secondary" id="watch-demo-btn">
+                            <i class="fas fa-play"></i>
+                            <span>Watch Demo</span>
+                        </button>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <span class="stat-number" data-count="500">0</span>
+                            <span class="stat-label">+ Clients</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" data-count="99">0</span>
+                            <span class="stat-label">% Success Rate</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" data-count="24">0</span>
+                            <span class="stat-label">/7 Support</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="floating-cards">
+                        <div class="floating-card card-1">
+                            <i class="fas fa-brain"></i>
+                            <span>AI Intelligence</span>
+                        </div>
+                        <div class="floating-card card-2">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Security First</span>
+                        </div>
+                        <div class="floating-card card-3">
+                            <i class="fas fa-lightning-bolt"></i>
+                            <span>Lightning Fast</span>
+                        </div>
+                        <div class="floating-card card-4">
+                            <i class="fas fa-globe"></i>
+                            <span>Global Scale</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <div class="scroll-arrow">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Features Section -->
+        <section id="features" class="features-section" data-scroll>
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Powerful Features</h2>
+                    <p class="section-subtitle">Cutting-edge technology solutions designed to accelerate your business growth</p>
+                </div>
+                <div class="features-grid">
+                    <article class="feature-card glass-card" data-feature="ai">
+                        <div class="feature-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3 class="feature-title">Advanced AI</h3>
+                        <p class="feature-description">
+                            Leverage machine learning and neural networks to automate complex processes and gain intelligent insights.
+                        </p>
+                        <button class="feature-link">
+                            Learn More <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </article>
+                    
+                    <article class="feature-card glass-card" data-feature="security">
+                        <div class="feature-icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <h3 class="feature-title">Enterprise Security</h3>
+                        <p class="feature-description">
+                            Bank-grade security with end-to-end encryption, compliance certifications, and advanced threat protection.
+                        </p>
+                        <button class="feature-link">
+                            Learn More <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </article>
+                    
+                    <article class="feature-card glass-card" data-feature="scalability">
+                        <div class="feature-icon">
+                            <i class="fas fa-expand-arrows-alt"></i>
+                        </div>
+                        <h3 class="feature-title">Infinite Scalability</h3>
+                        <p class="feature-description">
+                            Cloud-native architecture that scales seamlessly from startup to enterprise, handling millions of operations.
+                        </p>
+                        <button class="feature-link">
+                            Learn More <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </article>
+                    
+                    <article class="feature-card glass-card" data-feature="analytics">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3 class="feature-title">Real-time Analytics</h3>
+                        <p class="feature-description">
+                            Comprehensive dashboards and reporting tools with real-time data processing and predictive analytics.
+                        </p>
+                        <button class="feature-link">
+                            Learn More <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </article>
+                    
+                    <article class="feature-card glass-card" data-feature="integration">
+                        <div class="feature-icon">
+                            <i class="fas fa-puzzle-piece"></i>
+                        </div>
+                        <h3 class="feature-title">Seamless Integration</h3>
+                        <p class="feature-description">
+                            Connect with 500+ third-party services through our robust API ecosystem and pre-built connectors.
+                        </p>
+                        <button class="feature-link">
+                            Learn More <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </article>
+                    
+                    <article class="feature-card glass-card" data-feature="support">
+                        <div class="feature-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h3 class="feature-title">24/7 Support</h3>
+                        <p class="feature-description">
+                            Expert technical support available around the clock with guaranteed response times and success rates.
+                        </p>
+                        <button class="feature-link">
+                            Learn More <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </article>
+                </div>
+            </div>
+        </section>
+        
+        <!-- About Section -->
+        <section id="about" class="about-section" data-scroll>
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-text">
+                        <div class="section-header">
+                            <h2 class="section-title">About NeoTech</h2>
+                            <p class="section-subtitle">Pioneering the future of technology since 2019</p>
+                        </div>
+                        <div class="about-description">
+                            <p>
+                                At NeoTech, we believe in the transformative power of technology. Our mission is to democratize access to cutting-edge AI and cloud solutions, enabling businesses of all sizes to innovate and scale.
+                            </p>
+                            <p>
+                                With a team of world-class engineers and visionaries, we've served over 500 companies across 40 countries, processing billions of data points and delivering measurable business outcomes.
+                            </p>
+                        </div>
+                        <div class="about-achievements">
+                            <div class="achievement-item">
+                                <i class="fas fa-trophy"></i>
+                                <div>
+                                    <h4>Industry Leader</h4>
+                                    <p>Recognized as a top innovator by TechCrunch and Forbes</p>
+                                </div>
+                            </div>
+                            <div class="achievement-item">
+                                <i class="fas fa-rocket"></i>
+                                <div>
+                                    <h4>Rapid Growth</h4>
+                                    <p>300% year-over-year growth for 3 consecutive years</p>
+                                </div>
+                            </div>
+                            <div class="achievement-item">
+                                <i class="fas fa-users"></i>
+                                <div>
+                                    <h4>Global Team</h4>
+                                    <p>150+ engineers across 15 countries and 6 continents</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-visual">
+                        <div class="glass-card about-stats-card">
+                            <h3>Our Impact</h3>
+                            <div class="stats-grid">
+                                <div class="stat-box">
+                                    <span class="stat-big" data-count="2.5">0</span>
+                                    <span class="stat-unit">B+</span>
+                                    <p>Data Points Processed</p>
+                                </div>
+                                <div class="stat-box">
+                                    <span class="stat-big" data-count="99.9">0</span>
+                                    <span class="stat-unit">%</span>
+                                    <p>Uptime Guarantee</p>
+                                </div>
+                                <div class="stat-box">
+                                    <span class="stat-big" data-count="40">0</span>
+                                    <span class="stat-unit">+</span>
+                                    <p>Countries Served</p>
+                                </div>
+                                <div class="stat-box">
+                                    <span class="stat-big" data-count="15">0</span>
+                                    <span class="stat-unit">ms</span>
+                                    <p>Average Response Time</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Team Section -->
+        <section id="team" class="team-section" data-scroll>
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Meet Our Team</h2>
+                    <p class="section-subtitle">The brilliant minds behind NeoTech's revolutionary solutions</p>
+                </div>
+                <div class="team-grid">
+                    <div class="team-member glass-card">
+                        <div class="member-avatar">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face" alt="Alex Johnson" loading="lazy">
+                            <div class="member-overlay">
+                                <div class="social-links">
+                                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                                    <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="member-info">
+                            <h3 class="member-name">Alex Johnson</h3>
+                            <p class="member-role">CEO & Co-Founder</p>
+                            <p class="member-bio">Former VP of Engineering at Google, leading AI research and development initiatives.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="team-member glass-card">
+                        <div class="member-avatar">
+                            <img src="https://images.unsplash.com/photo-1494790108755-2616b4e0edc8?w=300&h=300&fit=crop&crop=face" alt="Sarah Chen" loading="lazy">
+                            <div class="member-overlay">
+                                <div class="social-links">
+                                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                                    <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="member-info">
+                            <h3 class="member-name">Sarah Chen</h3>
+                            <p class="member-role">CTO & Co-Founder</p>
+                            <p class="member-bio">MIT PhD in Computer Science, specializing in machine learning and distributed systems.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="team-member glass-card">
+                        <div class="member-avatar">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face" alt="Marcus Rodriguez" loading="lazy">
+                            <div class="member-overlay">
+                                <div class="social-links">
+                                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                                    <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="member-info">
+                            <h3 class="member-name">Marcus Rodriguez</h3>
+                            <p class="member-role">Head of Product</p>
+                            <p class="member-bio">Former Product Lead at Tesla, bringing decade of experience in user-centric design.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="team-member glass-card">
+                        <div class="member-avatar">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop&crop=face" alt="Emma Thompson" loading="lazy">
+                            <div class="member-overlay">
+                                <div class="social-links">
+                                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                                    <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="member-info">
+                            <h3 class="member-name">Emma Thompson</h3>
+                            <p class="member-role">VP of Marketing</p>
+                            <p class="member-bio">Growth marketing expert with 12 years at Stripe, scaling from startup to IPO.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section" data-scroll>
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Get In Touch</h2>
+                    <p class="section-subtitle">Ready to transform your business? Let's start the conversation.</p>
+                </div>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Office</h4>
+                                <p>123 Innovation Drive<br>San Francisco, CA 94107</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Phone</h4>
+                                <p>+1 (555) 123-4567</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Email</h4>
+                                <p>hello@neotech.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    <form class="contact-form glass-card" id="contact-form">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="company">Company</label>
+                            <input type="text" id="company" name="company">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">
+                            <span>Send Message</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <i class="fas fa-rocket"></i>
+                        <span>NeoTech</span>
+                    </div>
+                    <p>Shaping tomorrow's technology today</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Product</h4>
+                        <ul>
+                            <li><a href="#">Features</a></li>
+                            <li><a href="#">Pricing</a></li>
+                            <li><a href="#">API</a></li>
+                            <li><a href="#">Documentation</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Press</a></li>
+                            <li><a href="#">Blog</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Support</h4>
+                        <ul>
+                            <li><a href="#">Help Center</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Status</a></li>
+                            <li><a href="#">Security</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 NeoTech. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>
