@@ -1,83 +1,38 @@
-/**
- * HTML templates for all pages in the SPA
- */
-
-/**
- * Get Products page HTML
- */
 function getProductsPageHTML() {
     return `
         <div class="products-page">
-            <div id="matrix-rain"></div>
-            
-            <!-- Hero Section -->
             <section class="products-hero">
                 <div class="container">
-                    <h1 class="page-title gradient-text">AI-Powered Products</h1>
-                    <p class="page-subtitle">Experience the future of technology through our interactive demos</p>
+                    <h1 class="page-title gradient-text">AI Products</h1>
+                    <p class="page-subtitle">Interactive demos and features</p>
                 </div>
             </section>
             
-            <!-- 3D Product Cards -->
             <section class="products-showcase">
                 <div class="container">
                     <div class="products-grid">
-                        <div class="product-card-3d" data-product="neural-interface">
+                        <div class="product-card-3d">
                             <div class="card-front">
-                                <div class="product-icon">
-                                    <i class="fas fa-brain"></i>
-                                </div>
+                                <i class="fas fa-brain product-icon"></i>
                                 <h3>Neural Interface</h3>
-                                <p>AI-powered brain-computer interface</p>
+                                <p>AI brain-computer interface</p>
                             </div>
                             <div class="card-back">
-                                <h3>Neural Interface</h3>
-                                <ul class="feature-list">
-                                    <li>Real-time EEG analysis</li>
-                                    <li>Machine learning models</li>
-                                    <li>Adaptive algorithms</li>
-                                    <li>Medical grade safety</li>
-                                </ul>
+                                <h3>Features</h3>
+                                <p>Real-time analysis • ML models • Safety first</p>
                                 <button class="demo-btn">Try Demo</button>
                             </div>
                         </div>
                         
-                        <div class="product-card-3d" data-product="quantum-processor">
+                        <div class="product-card-3d">
                             <div class="card-front">
-                                <div class="product-icon">
-                                    <i class="fas fa-atom"></i>
-                                </div>
+                                <i class="fas fa-atom product-icon"></i>
                                 <h3>Quantum Processor</h3>
-                                <p>Next-gen quantum computing platform</p>
+                                <p>Next-gen computing</p>
                             </div>
                             <div class="card-back">
-                                <h3>Quantum Processor</h3>
-                                <ul class="feature-list">
-                                    <li>Superposition computing</li>
-                                    <li>Quantum entanglement</li>
-                                    <li>Error correction</li>
-                                    <li>Scalable qubits</li>
-                                </ul>
-                                <button class="demo-btn">Try Demo</button>
-                            </div>
-                        </div>
-                        
-                        <div class="product-card-3d" data-product="holographic-display">
-                            <div class="card-front">
-                                <div class="product-icon">
-                                    <i class="fas fa-cube"></i>
-                                </div>
-                                <h3>Holographic Display</h3>
-                                <p>3D volumetric display technology</p>
-                            </div>
-                            <div class="card-back">
-                                <h3>Holographic Display</h3>
-                                <ul class="feature-list">
-                                    <li>360° viewing angles</li>
-                                    <li>No special glasses</li>
-                                    <li>High resolution</li>
-                                    <li>Interactive gestures</li>
-                                </ul>
+                                <h3>Features</h3>
+                                <p>Superposition • Entanglement • Scalable</p>
                                 <button class="demo-btn">Try Demo</button>
                             </div>
                         </div>
@@ -85,103 +40,20 @@ function getProductsPageHTML() {
                 </div>
             </section>
             
-            <!-- AI Demos Section -->
             <section class="ai-demos">
                 <div class="container">
-                    <h2 class="section-title">Interactive AI Demos</h2>
-                    
+                    <h2>AI Demos</h2>
                     <div class="demos-grid">
-                        <!-- Chat Bot Demo -->
                         <div class="demo-card glass-card">
-                            <h3>AI Chatbot</h3>
-                            <div id="ai-chat-demo" class="chat-container">
-                                <!-- Messages will be added dynamically -->
-                            </div>
+                            <h3>AI Chat</h3>
+                            <div id="ai-chat-demo" class="chat-container"></div>
                         </div>
-                        
-                        <!-- Code Generator Demo -->
                         <div class="demo-card glass-card">
-                            <h3>Code Generator</h3>
+                            <h3>Code Gen</h3>
                             <div id="code-generator-demo">
-                                <div class="code-prompt">Enter your requirement...</div>
                                 <pre class="generated-code"></pre>
-                                <button class="generate-btn">Generate Code</button>
+                                <button class="generate-btn">Generate</button>
                             </div>
-                        </div>
-                        
-                        <!-- Image Processor Demo -->
-                        <div class="demo-card glass-card">
-                            <h3>Image Processor</h3>
-                            <div id="image-processor-demo">
-                                <canvas id="demo-canvas"></canvas>
-                                <div class="filter-controls">
-                                    <button class="filter-btn">Edge Detection</button>
-                                    <button class="filter-btn">Blur</button>
-                                    <button class="filter-btn">Sharpen</button>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Voice Recognition Demo -->
-                        <div class="demo-card glass-card">
-                            <h3>Voice Recognition</h3>
-                            <div id="voice-recognition-demo">
-                                <button class="start-voice-btn">Start Listening</button>
-                                <div class="voice-waveform"></div>
-                                <div class="voice-transcript">Click the button to start...</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            
-            <!-- Interactive Features -->
-            <section class="interactive-features">
-                <div class="container">
-                    <!-- Feature Comparison -->
-                    <div id="feature-comparison" class="comparison-widget">
-                        <h3>Before vs After</h3>
-                        <div class="comparison-container">
-                            <div class="before-image"></div>
-                            <div class="after-image"></div>
-                            <input type="range" class="comparison-slider" min="0" max="100" value="50">
-                        </div>
-                    </div>
-                    
-                    <!-- Pricing Calculator -->
-                    <div id="pricing-calculator" class="calculator-widget glass-card">
-                        <h3>Pricing Calculator</h3>
-                        <div class="calculator-controls">
-                            <div class="control-group">
-                                <label>Users</label>
-                                <input type="range" min="1" max="1000" value="10" data-multiplier="5">
-                                <span class="control-value">10</span>
-                            </div>
-                            <div class="control-group">
-                                <label>Storage (GB)</label>
-                                <input type="range" min="1" max="1000" value="100" data-multiplier="0.1">
-                                <span class="control-value">100</span>
-                            </div>
-                            <div class="control-group">
-                                <label>API Calls (1000s)</label>
-                                <input type="range" min="1" max="100" value="10" data-multiplier="2">
-                                <span class="control-value">10</span>
-                            </div>
-                        </div>
-                        <div class="calculated-price">$150/month</div>
-                    </div>
-                    
-                    <!-- Metrics Dashboard -->
-                    <div id="metrics-dashboard" class="metrics-widget">
-                        <h3>Performance Metrics</h3>
-                        <div class="metrics-container">
-                            <div class="progress-ring" data-percentage="85">
-                                <svg>
-                                    <circle class="progress-circle" r="40" cx="50" cy="50"></circle>
-                                </svg>
-                                <div class="progress-text">0%</div>
-                            </div>
-                            <div id="realtime-chart"></div>
                         </div>
                     </div>
                 </div>
@@ -190,236 +62,66 @@ function getProductsPageHTML() {
     `;
 }
 
-/**
- * Get Portfolio page HTML
- */
 function getPortfolioPageHTML() {
     return `
         <div class="portfolio-page">
-            <!-- Hero Section -->
             <section class="portfolio-hero">
                 <div class="container">
-                    <h1 class="page-title gradient-text">Our Portfolio</h1>
-                    <p class="page-subtitle">Innovative projects that shape the future</p>
+                    <h1 class="page-title gradient-text">Portfolio</h1>
+                    <p class="page-subtitle">Our innovative projects</p>
                 </div>
             </section>
             
-            <!-- Filter Controls -->
             <section class="portfolio-filters">
                 <div class="container">
                     <div class="filter-controls">
-                        <button class="portfolio-filter-btn active" data-category="all">All Projects</button>
-                        <button class="portfolio-filter-btn" data-category="ai">AI & Machine Learning</button>
-                        <button class="portfolio-filter-btn" data-category="data">Data Science</button>
-                        <button class="portfolio-filter-btn" data-category="iot">IoT & Hardware</button>
-                        <button class="portfolio-filter-btn" data-category="security">Cybersecurity</button>
-                        <button class="portfolio-filter-btn" data-category="ar-vr">AR/VR</button>
-                        <button class="portfolio-filter-btn" data-category="robotics">Robotics</button>
+                        <button class="portfolio-filter-btn active" data-category="all">All</button>
+                        <button class="portfolio-filter-btn" data-category="ai">AI</button>
+                        <button class="portfolio-filter-btn" data-category="data">Data</button>
+                        <button class="portfolio-filter-btn" data-category="security">Security</button>
                     </div>
-                    
-                    <div class="portfolio-search-controls">
-                        <input type="text" id="portfolio-search" placeholder="Search projects..." class="search-input">
-                        <select id="portfolio-sort" class="sort-select">
-                            <option value="date-newest">Newest First</option>
-                            <option value="date-oldest">Oldest First</option>
-                            <option value="title-az">Title A-Z</option>
-                            <option value="title-za">Title Z-A</option>
-                        </select>
-                    </div>
+                    <input type="text" id="portfolio-search" placeholder="Search..." class="search-input">
                 </div>
             </section>
             
-            <!-- Portfolio Gallery -->
             <section class="portfolio-gallery-section">
                 <div class="container">
-                    <div id="portfolio-gallery" class="portfolio-gallery">
-                        <!-- Projects will be dynamically loaded -->
-                    </div>
+                    <div id="portfolio-gallery" class="portfolio-gallery"></div>
                 </div>
             </section>
-            
-            <!-- Geometric Background Shapes -->
-            <div class="portfolio-bg-shapes">
-                <div class="geometric-shape shape-1"></div>
-                <div class="geometric-shape shape-2"></div>
-                <div class="geometric-shape shape-3"></div>
-                <div class="geometric-shape shape-4"></div>
-                <div class="geometric-shape shape-5"></div>
-            </div>
         </div>
     `;
 }
 
-/**
- * Get Dashboard page HTML
- */
 function getDashboardPageHTML() {
     return `
         <div class="dashboard-page">
-            <!-- Dashboard Header -->
             <section class="dashboard-header">
                 <div class="container">
-                    <h1 class="page-title gradient-text">Real-time Dashboard</h1>
-                    <p class="page-subtitle">Monitor your data and analytics in real-time</p>
+                    <h1 class="page-title gradient-text">Dashboard</h1>
+                    <p class="page-subtitle">Real-time analytics</p>
                 </div>
             </section>
             
-            <!-- Dashboard Grid -->
             <section class="dashboard-grid-section">
                 <div class="container">
                     <div class="dashboard-grid">
-                        <!-- Analytics Chart Widget -->
-                        <div class="dashboard-widget glass-card widget-large" id="analytics-chart-widget">
-                            <div class="widget-header">
-                                <h3>Analytics Overview</h3>
-                                <div class="widget-controls">
-                                    <button class="widget-fullscreen">⛶</button>
-                                </div>
-                            </div>
-                            <div class="widget-content">
-                                <!-- Chart will be added dynamically -->
-                            </div>
-                            <div class="widget-resize-handle"></div>
+                        <div class="dashboard-widget glass-card" id="analytics-chart-widget">
+                            <h3>Analytics</h3>
+                            <div class="widget-content"></div>
                         </div>
-                        
-                        <!-- Revenue Widget -->
                         <div class="dashboard-widget glass-card" id="revenue-widget">
-                            <div class="widget-header">
-                                <h3>Revenue</h3>
-                                <div class="widget-controls">
-                                    <button class="widget-fullscreen">⛶</button>
-                                </div>
-                            </div>
-                            <div class="widget-content">
-                                <div class="revenue-amount">$0</div>
-                                <div class="revenue-progress-container">
-                                    <div class="revenue-progress"></div>
-                                </div>
-                                <div class="growth-rate">+0%</div>
-                            </div>
-                            <div class="widget-resize-handle"></div>
+                            <h3>Revenue</h3>
+                            <div class="revenue-amount">$0</div>
+                            <div class="revenue-progress"></div>
                         </div>
-                        
-                        <!-- User Activity Widget -->
                         <div class="dashboard-widget glass-card" id="user-activity-widget">
-                            <div class="widget-header">
-                                <h3>User Activity</h3>
-                                <div class="widget-controls">
-                                    <button class="widget-fullscreen">⛶</button>
-                                </div>
-                            </div>
-                            <div class="widget-content">
-                                <div class="activity-feed">
-                                    <!-- Activity items will be added dynamically -->
-                                </div>
-                            </div>
-                            <div class="widget-resize-handle"></div>
+                            <h3>Activity</h3>
+                            <div class="activity-feed"></div>
                         </div>
-                        
-                        <!-- Performance Metrics Widget -->
-                        <div class="dashboard-widget glass-card" id="performance-metrics-widget">
-                            <div class="widget-header">
-                                <h3>System Performance</h3>
-                                <div class="widget-controls">
-                                    <button class="widget-fullscreen">⛶</button>
-                                </div>
-                            </div>
-                            <div class="widget-content">
-                                <div class="metrics-grid">
-                                    <!-- Metrics will be added dynamically -->
-                                </div>
-                            </div>
-                            <div class="widget-resize-handle"></div>
-                        </div>
-                        
-                        <!-- 3D Globe Widget -->
-                        <div class="dashboard-widget glass-card widget-large" id="globe-widget">
-                            <div class="widget-header">
-                                <h3>Global Activity</h3>
-                                <div class="widget-controls">
-                                    <button class="widget-fullscreen">⛶</button>
-                                </div>
-                            </div>
-                            <div class="widget-content">
-                                <!-- 3D Globe canvas will be added here -->
-                            </div>
-                            <div class="widget-resize-handle"></div>
-                        </div>
-                        
-                        <!-- Weather Widget -->
-                        <div class="dashboard-widget glass-card" id="weather-widget">
-                            <div class="widget-header">
-                                <h3>Weather</h3>
-                                <div class="widget-controls">
-                                    <button class="widget-fullscreen">⛶</button>
-                                </div>
-                            </div>
-                            <div class="widget-content">
-                                <!-- Weather data will be added dynamically -->
-                            </div>
-                            <div class="widget-resize-handle"></div>
-                        </div>
-                        
-                        <!-- Stock Ticker Widget -->
-                        <div class="dashboard-widget glass-card" id="stock-ticker-widget">
-                            <div class="widget-header">
-                                <h3>Market Data</h3>
-                                <div class="widget-controls">
-                                    <button class="widget-fullscreen">⛶</button>
-                                </div>
-                            </div>
-                            <div class="widget-content">
-                                <div class="stock-ticker">
-                                    <!-- Stock data will be added dynamically -->
-                                </div>
-                            </div>
-                            <div class="widget-resize-handle"></div>
-                        </div>
-                        
-                        <!-- Server Status Widget -->
-                        <div class="dashboard-widget glass-card" id="server-status-widget">
-                            <div class="widget-header">
-                                <h3>Server Status</h3>
-                                <div class="widget-controls">
-                                    <button class="widget-fullscreen">⛶</button>
-                                </div>
-                            </div>
-                            <div class="widget-content">
-                                <div class="server-list">
-                                    <!-- Server status will be added dynamically -->
-                                </div>
-                            </div>
-                            <div class="widget-resize-handle"></div>
-                        </div>
-                        
-                        <!-- AI Insights Widget -->
-                        <div class="dashboard-widget glass-card" id="ai-insights-widget">
-                            <div class="widget-header">
-                                <h3>AI Insights</h3>
-                                <div class="widget-controls">
-                                    <button class="widget-fullscreen">⛶</button>
-                                </div>
-                            </div>
-                            <div class="widget-content">
-                                <div class="ai-insight">Loading insights...</div>
-                            </div>
-                            <div class="widget-resize-handle"></div>
-                        </div>
-                        
-                        <!-- Social Media Feed Widget -->
-                        <div class="dashboard-widget glass-card" id="social-feed-widget">
-                            <div class="widget-header">
-                                <h3>Social Feed</h3>
-                                <div class="widget-controls">
-                                    <button class="widget-fullscreen">⛶</button>
-                                </div>
-                            </div>
-                            <div class="widget-content">
-                                <div class="social-posts">
-                                    <!-- Social posts will be added dynamically -->
-                                </div>
-                            </div>
-                            <div class="widget-resize-handle"></div>
+                        <div class="dashboard-widget glass-card" id="globe-widget">
+                            <h3>Global</h3>
+                            <div class="widget-content"></div>
                         </div>
                     </div>
                 </div>
